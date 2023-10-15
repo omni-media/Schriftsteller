@@ -3,6 +3,7 @@ import {Route, Routes, useLocation} from 'react-router-dom'
 
 
 import './App.css'
+import Game from './pages/game/component'
 import Login from './pages/login/component'
 import Profile from './pages/profile/component'
 import AIBooks from './pages/ai-books/component'
@@ -35,7 +36,8 @@ function App() {
 				<Route path="/" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/profile" element={<Profile />} />
-				<Route path="/ai-books" element={<AIBooks/>} />
+				<Route path="/ai-books" element={<AIBooks />} />
+				<Route path="/game" element={<Game />} />
 			</Routes>
 		</div>
 	)
