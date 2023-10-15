@@ -1,5 +1,10 @@
+import Navigation from "../../components/navigation/component"
+
 export default function AIBooks() {
 	return (
-		<div>AiBooks</div>
+		<>
+			<Navigation />
+			<div>AiBooks</div>
+		</>
 	)
 }

@@ -1,5 +1,10 @@
+import Navigation from "../../components/navigation/component";
+
 export default function Profile() {
 	return (
-		<div>Profile</div>
+		<>
+			<Navigation />
+			<div>Profile</div>
+		</>
 	)
 }

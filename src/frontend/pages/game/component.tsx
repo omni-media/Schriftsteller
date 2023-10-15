@@ -1,11 +1,10 @@
 import Navigation from "../../components/navigation/component"
 
-export default function Register() {
+export default function Game() {
 	return (
 		<>
 			<Navigation />
-			<div>Register</div>
+			<div>Game</div>
 		</>
 	)
 }
-
