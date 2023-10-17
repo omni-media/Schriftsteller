@@ -19,7 +19,7 @@
     "noFallthroughCasesInSwitch": true,
 
 		"rootDir": "src",
-		"outDir": "x",
+		"outDir": "dist",
   },
 	"include": ["src"],
 	"exclude": [
