@@ -21,8 +21,13 @@
 		"rootDir": "src",
 		"outDir": "dist",
   },
-	"include": ["src"],
+	"include": [
+		"src/frontend",
+		"src/index.html.ts",
+		"src/globals.d.ts"
+	],
 	"exclude": [
+		"src/backend/",
 		"src/**/_*"
 	],
   "references": [{ "path": "./tsconfig.node.json" }]
