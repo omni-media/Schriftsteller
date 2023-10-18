@@ -15,15 +15,13 @@
 		"typescript-watch": "tsc --watch",
     "typescript": "tsc",
 		"typescript-production": "tsc ./src/index.html.ts --outDir ./dist --module ESNext --target ES2020 --moduleResolution bundler",
-		"turtle-dev": "turtle --in='src:dist' --out='dist' --exclude='**/*.partial.html.js' --verbose='true'",
-    "typescript": "tsc",
-    "importmap": "importly --host=node_modules < package-lock.json > dist/importmap.json",
+		"turtle-dev": "turtle --in='src:dist' --out='dist' --exclude='**/*.partial.html.js' --verbose='true'"
   },
   "dependencies": {
     "es-module-shims": "^1.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0",
+    "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
     "@benev/turtle": "^0.5.0",
