@@ -1,9 +1,0 @@
-.flexColumn {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5em;
-}
-
-button {
-	margin-top: 1em;
-}

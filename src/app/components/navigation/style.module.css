@@ -1,0 +1,13 @@
+.navigation {
+	width: 100%;
+}
+
+.navigation ol {
+	display: flex;
+	justify-content: space-around;
+	list-style-type: none;
+}
+
+.active {
+	text-shadow: red 1px 0 10px;
+}
