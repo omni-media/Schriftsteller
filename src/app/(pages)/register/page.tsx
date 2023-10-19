@@ -1,4 +1,4 @@
-import Navigation from "../../components/navigation/component"
+import Navigation from "@/app/components/navigation/component"
 
 export default function Register() {
 	return (
