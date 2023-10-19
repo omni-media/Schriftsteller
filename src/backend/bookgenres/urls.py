@@ -1,7 +1,7 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
-from views import GenreListView
+from bookgenres.views import GenreListView
 
 urlpatterns = [
-    path('', GenreListView.as_view(), name="genreList"),
+    path('', GenreListView.as_view(), name="genre-list"),
 ]
