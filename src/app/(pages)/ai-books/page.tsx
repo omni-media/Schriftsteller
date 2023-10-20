@@ -5,7 +5,7 @@ import {Book} from "@/app/types"
 import Navigation from "@/app/components/navigation/component"
 
 export default function AIBooks() {
- const [books,setBooks]= useState<Book[] | []>([]);
+	const [books,setBooks]= useState<Book[] | []>([]);
 	const getData=()=>{
 		fetch(`books.json`
 		,{
