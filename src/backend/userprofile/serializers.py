@@ -10,10 +10,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         write_only=True,
         required=True,
     )
+    pk = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['pk','username', 'password']
 
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data.get('password'))

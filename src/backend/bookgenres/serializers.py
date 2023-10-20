@@ -6,6 +6,4 @@ from django.contrib.auth.models import User
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
-        fields = ['pk', 'name']
-
-
+        fields = ['pk', 'name', 'image']

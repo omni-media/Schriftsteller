@@ -23,6 +23,6 @@ class UserTest(APITestCase):
 
         user_dict['password'] = "GoOd_passWord_Asci12_#$A"
         response = self.client.post(url, data=user_dict, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(User.objects.all()),1)
 

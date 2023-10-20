@@ -27,11 +27,22 @@ class GenreTest(APITestCase):
         for name, genre in zip(self.names, response.data):
             self.assertEqual(name, genre['name'])
 
-    def test_add_user_genre(self):
+    def test_add_remove_user_genre(self):
         genres = Genre.objects.all()
         genres_pk = [genre.pk for genre in genres]
 
         url = reverse('add-user-genre')
         response = self.client.post(url, data=genres_pk, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(self.user.user_genres.filter()), 3)
+
+        url = reverse('remove-user-genre')
+        genres_pk.remove(1)
+        response = self.client.post(url, data=genres_pk, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(self.user.user_genres.filter()), 1)
+
+
+
+
+
