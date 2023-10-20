@@ -4,5 +4,5 @@ from bookgenres.views import GenreListView, AddUserGenreView
 
 urlpatterns = [
     path('', GenreListView.as_view(), name="genre-list"),
-    path('add/', AddUserGenreView.as_view(), name="add-user-genre")
+    path('add/', AddUserGenreView.as_view(), name="add-user-genre"),
 ]

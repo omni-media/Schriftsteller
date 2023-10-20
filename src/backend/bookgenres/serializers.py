@@ -9,9 +9,3 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = ['pk', 'name']
 
 
-class AddUserGenreSerializer(serializers.ModelSerializer):
-    user_genres = GenreSerializer(many=True)
-
-    class Meta:
-        model = User
-        fields = ['user_genres']
