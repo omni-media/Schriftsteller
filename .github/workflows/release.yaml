@@ -37,7 +37,7 @@ jobs:
       run: npm ci
 
     - name: 🔨 build
-      run: npm run build-production
+      run: npm run build
     
     - name: 🚚 tracking ignored stuff
       run: |
