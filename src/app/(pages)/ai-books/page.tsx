@@ -1,40 +1,29 @@
 "use client"
-import {useState, useEffect} from "react"
 
-import {Book} from "@/app/types"
+import Link from "next/link"
+import {Book } from "@/app/types"
+import {usePathname} from "next/navigation"
+import {get_books} from "@/app/api/get_books"
+import {useQuery} from "@tanstack/react-query"
 import Navigation from "@/app/components/navigation/component"
 
 export default function AIBooks() {
-	const [books,setBooks]= useState<Book[] | []>([]);
-	const getData=()=>{
-		fetch(`books.json`
-		,{
-			headers : {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			 }
-		}
-		)
-			.then(function(response){
-				return response.json();
-			})
-			.then(function(myJson) {
-				setBooks(myJson)
-			});
-	}
-	useEffect(()=>{
-		getData()
-	},[])
+	const path = usePathname()
+	const { data } = useQuery<Book[]>({
+		queryKey: ["books"],
+		queryFn: () => get_books(),
+		staleTime: 5 * 1000,
+	})
 
 	return (
 		<>
 			<Navigation />
 			<div>AiBooks</div>
-			{books.map((book, i) => (
+			{data?.map((book, i) => (
 				<div key={i}>
 					<h2>{book.title}</h2>
 					<p>{book.description}</p>
-					<a href="/some_book.html">read book</a>
+					<Link href={path + `/${book.title.split(" ").join("-")}`}>read book</Link>
 				</div>
 			))}
 		</>

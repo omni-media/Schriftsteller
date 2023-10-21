@@ -5,7 +5,7 @@ export interface Book {
 	description: string
 	chapters: {
 		heading: string
-		paragraphs: string[]
+		content: string
 	}[]
 }
 
