@@ -9,7 +9,7 @@ export default async function BookPage({params: {title}}: {params: Book}) {
 				<div>
 					<h2>{book?.id}</h2>
 					<h2>{book?.title}</h2>
-					<p>{book?.description}</p>
+					<p>{book?.chapters.content}</p>
 				</div>
 		</>
 	)
