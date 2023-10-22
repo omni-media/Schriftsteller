@@ -1,12 +1,12 @@
 "use client"
-export default function Login() {
-	return (
-		<form>
-			<label>Username</label>
-			<input />
-			<label>Password</label>
-			<input />
-			<a href="/ai-books">login</a>
-		</form>
-	)
+
+import Login from "./(pages)/login/page"
+import AIBooks from "./(pages)/ai-books/page"
+
+export default function App() {
+	const logged = true
+
+	return logged
+		? <AIBooks/> 
+		: <Login/>
 }
