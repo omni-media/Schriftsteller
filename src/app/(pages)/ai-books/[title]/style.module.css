@@ -1,0 +1,120 @@
+.chapters {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1em;
+}
+
+.title {
+	margin: 1em;
+}
+
+.chaptersHeading {
+	margin-bottom: 1em;
+}
+
+.description {
+	font-size: 0.4em;
+	font-weight: lighter;
+	margin: 0.2em;
+}
+
+.chaptersHeading, .title, .description {
+	text-align: center;
+}
+
+.bookCover {
+	height: 450px;
+	width: 400px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: all 1s;
+	z-index: 2;
+	perspective: 1000px;
+}
+
+.bookCover::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 100;
+	background-image: radial-gradient(circle, transparent 150px, black);
+	opacity: 0;
+	transition: opacity 1s;
+}
+
+.bookCover:hover::before {
+	opacity: 1;
+}
+
+.bookCover:hover {
+	rotate: x 15deg;
+	transition: all 1s;
+}
+
+.bookCover::after {
+	content: "";
+	z-index: 1;
+	position: absolute;
+	translate: 0;
+	inset: 80% 0.5rem 0.5rem;
+	transform: translateZ(-100px);
+	background: black;
+
+	filter: blur(1rem);
+	transition: rotate 1s, translate 1s;
+}
+
+.perspective {
+	perspective: 1000px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.bgImage {
+	position: absolute;
+	z-index:2;
+}
+
+.bookCover:hover::after {
+	rotate: x calc(var(15deg) * -1);
+	translate: 0 60px;
+}
+
+.link {
+	position: absolute;
+	background: rgb(0 0 0 / 50%);
+	color: white;
+	backdrop-filter: 10px;
+	border-radius: 10px;
+	font-size: 1.5em;
+	z-index: 3;
+	transition: opacity 1s;
+	padding: 0.5em;
+	bottom: 3em;
+	transition: bottom 1s;
+}
+
+.bookCover:hover .link {
+	background: rgb(11 126 3 / 50%);
+	transition: opacity 1s;
+	opacity: 1;
+}
+
+.bookCover:hover span {
+	display: none;
+}
+
+.bookCover:hover .link {
+	transition: bottom 1s;
+	bottom: 40%;
+}
+
+.bookCover:hover .link::before {
+	text-shadow: 0px 0px 20px rgb(90 0 204);
+	content: "Read Chapter";
+	bottom: 5em;
+}
