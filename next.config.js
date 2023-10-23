@@ -7,7 +7,10 @@ if(isGithubActions) {
 const nextConfig = {
 	output: 'export',
 	distDir: 'dist',
-	basePath
+	basePath,
+	images: {
+		unoptimized: true
+	}
 }
 
 module.exports = nextConfig
