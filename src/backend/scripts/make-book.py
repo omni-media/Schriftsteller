@@ -3,6 +3,7 @@ from transformers import pipeline
 from RandomTextGenerator import *
 import json
 import torch
+from modelClasses.GenrePranavModel import GenrePranavModel
 
 
 def generate_summary(text):
@@ -34,11 +35,11 @@ def generate_dict_chapter(heading, content):
     }
 
 
-def generate_book(chapters=4):
-    story_gen = pipeline("text-generation", "pranavpsv/gpt2-genre-story-generator")
+def generate_book(model_class_instance, chapters=4):
+    model_class_instance.prepare()
     book_dict = {
         'title': RandomTextGenerator("./txt", "./combinations/title").generate_sentence(),
-        'author': 'pranavpsv/gpt2-genre-story-generator',
+        'author': model_class_instance.name,
         'chapters': []
     }
     for i in range(chapters):
@@ -46,7 +47,7 @@ def generate_book(chapters=4):
         book_dict['chapters'].append(
             generate_dict_chapter(
                 chapter_heading,
-                story_gen("<BOS> <drama> " + chapter_heading, max_length=1024)[0]["generated_text"]
+                model_class_instance.generate(start_text=chapter_heading)
             )
         )
 
@@ -56,14 +57,10 @@ def generate_book(chapters=4):
 
 
 def make_book(*args, **kwargs):
-    json_book = json.dumps(generate_book(), indent=2)
+    model = GenrePranavModel()
+    json_book = json.dumps(generate_book(model), indent=2)
     with open("sample_book.json", "w") as outfile:
         outfile.write(json_book)
 
 
 make_book()
-
-
-
-
-
