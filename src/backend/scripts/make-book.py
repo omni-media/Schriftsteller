@@ -44,10 +44,15 @@ def generate_book(model_class_instance, chapters=4):
     }
     for i in range(chapters):
         chapter_heading = book_dict['title'] + " chapter " + str(i + 1)
+        start_text = chapter_heading
+        if i > 0:
+            last_chapter = book_dict['chapters'][i-1]['content']
+            last_chars = int(len(last_chapter)/3)
+            start_text = last_chapter[-last_chars:]
         book_dict['chapters'].append(
             generate_dict_chapter(
                 chapter_heading,
-                model_class_instance.generate(start_text=chapter_heading)
+                model_class_instance.generate(start_text=start_text)
             )
         )
 
@@ -58,7 +63,7 @@ def generate_book(model_class_instance, chapters=4):
 
 def make_book(*args, **kwargs):
     model = GenrePranavModel()
-    json_book = json.dumps(generate_book(model), indent=2)
+    json_book = json.dumps(generate_book(model,chapters=2), indent=2)
     with open("sample_book.json", "w") as outfile:
         outfile.write(json_book)
 

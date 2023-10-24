@@ -11,5 +11,7 @@ class GenrePranavModel(BaseModel):
     def prepare(self):
         self.story_gen = pipeline("text-generation", "pranavpsv/gpt2-genre-story-generator")
 
-    def generate(self, start_text="", length=1024):
-        return self.story_gen("<BOS> <drama> " + start_text, max_length=1024)[0]["generated_text"]
+    def generate(self, start_text="", length=1024, *args, **kwargs):
+        text_args = "<BOS> <drama> "
+        text = self.story_gen(text_args + start_text, max_length=1024,min_length=512)[0]["generated_text"]
+        return self.remove_n_chars(text,len(start_text)+len(text_args))
