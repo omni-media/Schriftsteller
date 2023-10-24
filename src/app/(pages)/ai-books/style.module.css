@@ -6,12 +6,12 @@
 
 .book {
 	display: flex;
-	height: 250px;
 	flex: 25%;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 1em;
+	position: relative;
 }
 
 .mainHeading {
@@ -19,10 +19,70 @@
 	padding: 1em;
 	font-size: 6em;
 	text-shadow: 0px 0px 20px rgb(90 0 204);
-	/*text-shadow: -1px 0 purple, 0 1px purple, 1px 0 purple, 0 -1px purple;*/
 }
 
 .routeHeading {
 	text-align: center;
-	margin: 1em;
+	margin: 1.5em;
+	font-size: 3em;
+	border-radius: 20px;
+	padding: 1em;
+	background: rgba(0, 0, 0, 0.48);
+	display: flex;
+	align-items: center;
+}
+
+.flexRow {
+	display: flex;
+	gap: 1em;
+}
+
+.flexColumn {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.bookCover {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.bookCover::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 100;
+	background-image: radial-gradient(circle, transparent 150px, #181a1b);
+	opacity: 1;
+	transition: opacity 1s;
+	height: 85%;
+}
+
+.bookCoverImg {
+	width: 90%;
+	height: 85%;
+}
+
+.read {
+	background: white;
+	width: 90%;
+	height: 10%;
+	text-align: center;
+	color: white;
+	display: flex;
+	color: black;
+	border-radius: 10px;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.5s;
+}
+
+.read:hover {
+	color: black;
+	box-shadow: inset 0em 0em 1em black;
+	transition: all 0.5s;
 }

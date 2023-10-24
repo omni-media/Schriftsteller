@@ -2,12 +2,24 @@
 	width: 100%;
 }
 
+.navigation a {
+	color: white;
+	font-size: 1.3em;
+}
+
 .navigation ol {
 	display: flex;
 	justify-content: space-around;
 	list-style-type: none;
+	background: #0000007a;
+	padding: 1em;
+	border-radius: 10px;
 }
 
 .active {
-	text-shadow: red 1px 0 10px;
+	text-shadow: white 1px 0 10px, white 1px 0 10px;
+}
+
+.logo {
+	padding: 7em;
 }
