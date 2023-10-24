@@ -12,4 +12,4 @@ class BaseModel(ABC):
         pass
 
     def remove_n_chars(self, text, n):
-        return text[(n - 1):]
+        return text[n:]
