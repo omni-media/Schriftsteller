@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-		"test-watch": "jest --watch",
+    "test-watch": "jest --watch",
     "lint": "next lint"
   },
   "dependencies": {
     "@tanstack/react-query-devtools": "^5.0.3",
     "@tanstack/react-query-next-experimental": "^5.0.0",
+    "fuse.js": "^6.6.2",
     "next": "13.5.6",
     "python-shell": "^5.0.0",
     "react": "^18",
