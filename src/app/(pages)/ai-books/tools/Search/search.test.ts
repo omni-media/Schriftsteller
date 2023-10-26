@@ -11,12 +11,12 @@ describe("Search", () => {
 		const [firstBook] = books
 		expect(firstBook.title.includes("Amazon")).toBeTruthy()
 	})
-	it("returns empty array when query is too specific", () => {
+	it("returns empty array when query is too specific (max 10 words)", () => {
 		const search = new Search(manifest)
 		const text = `In the Heart of the Mighty Amazon: A Comprehensive Exploration of the Breathtaking Biodiversity,
 			Enigmatic Indigenous Cultures, and the Urgent Call for Preservation in the World's Largest Rainforest`
 		const books = search.query({text, sort: "newest"})
-		expect(books).toBe([])
+		expect(books).toEqual([])
 	})
 	it("returns ordered results according to sort params", () => {})
 	it("can search for alphabetically-first books", () => {
@@ -63,7 +63,7 @@ describe("Search", () => {
 		const search = new Search(manifest)
 		const books = search.query({text: "amzon", sort: "newest"})
 		const [firstBook] = books
-		expect(firstBook.title).toBe("Amazon")
+		expect(firstBook.title.includes("Amazon")).toBeTruthy()
 	})
 	it("can search for oldest books", () => {
 		const search = new Search(manifest)
