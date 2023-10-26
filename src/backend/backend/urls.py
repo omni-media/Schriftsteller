@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/genre/', include('bookgenres.urls')),
     path('api/user/', include('userprofile.urls')),
+    path('api/book/', include('book.urls')),
 
 ]

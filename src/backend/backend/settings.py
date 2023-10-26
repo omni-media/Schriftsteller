@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'bookgenres',
     'userprofile',
+    'book',
 ]
 
 MIDDLEWARE = [
