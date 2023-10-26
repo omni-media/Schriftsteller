@@ -6,7 +6,7 @@ let options: Options = {
 	mode: "json",
 	pythonPath: 'path/to/python',
 	pythonOptions: ['-u'], // get print results in real-time
-	scriptPath: '../../scripts/make-book.py',
+	scriptPath: '../../scripts/make_book.py',
 	//args: ['value1', 'value2', 'value3']
 }
 

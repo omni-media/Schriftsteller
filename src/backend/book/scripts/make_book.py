@@ -1,9 +1,10 @@
 # Example of usage
 from transformers import pipeline
-from RandomTextGenerator import *
 import json
 import torch
-from modelClasses.GenrePranavModel import GenrePranavModel
+from book.scripts.modelClasses.GenrePranavModel import GenrePranavModel
+from book.scripts.modelClasses.FairseqNerysModel import FairseqNerysModel
+from book.scripts.RandomTextGenerator import RandomTextGenerator
 
 
 def generate_summary(text):
@@ -35,7 +36,7 @@ def generate_dict_chapter(heading, content):
     }
 
 
-def generate_book(model_class_instance, chapters=4):
+def generate_book(model_class_instance, chapters=4,**kwargs):
     model_class_instance.prepare()
     book_dict = {
         'title': RandomTextGenerator("./txt", "./combinations/title").generate_sentence(),
@@ -46,8 +47,8 @@ def generate_book(model_class_instance, chapters=4):
         chapter_heading = book_dict['title'] + " chapter " + str(i + 1)
         start_text = chapter_heading
         if i > 0:
-            last_chapter = book_dict['chapters'][i-1]['content']
-            last_chars = int(len(last_chapter)/3)
+            last_chapter = book_dict['chapters'][i - 1]['content']
+            last_chars = int(len(last_chapter) / 3)
             start_text = last_chapter[-last_chars:]
         book_dict['chapters'].append(
             generate_dict_chapter(
@@ -61,11 +62,18 @@ def generate_book(model_class_instance, chapters=4):
     return book_dict
 
 
-def make_book(*args, **kwargs):
-    model = GenrePranavModel()
-    json_book = json.dumps(generate_book(model,chapters=2), indent=2)
-    with open("sample_book.json", "w") as outfile:
-        outfile.write(json_book)
+def make_book(**kwargs):
+    models = {
+        'fairseq': FairseqNerysModel(),
+        'pranav': GenrePranavModel()
+    }
+    model = models['pranav']
+    if 'model' in kwargs:
+        model = models[kwargs.get('model')]
+    json_book = json.dumps(generate_book(model, chapters=2, **kwargs), indent=2)
+    return json_book
+
+    # with open("sample_book.json", "w") as outfile:
+    #     outfile.write(json_book)
 
 
-make_book()
