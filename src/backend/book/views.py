@@ -19,5 +19,6 @@ class GetGenerateBook(APIView):
             arguments = request.query_params
             book = make_book(**arguments)
         except Exception as e:
+            print(e)
             return Response(status=status.HTTP_400_BAD_REQUEST)
         return Response(data=book, status=status.HTTP_200_OK)

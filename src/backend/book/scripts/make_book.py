@@ -39,7 +39,7 @@ def generate_dict_chapter(heading, content):
 def generate_book(model_class_instance, chapters=4,**kwargs):
     model_class_instance.prepare()
     book_dict = {
-        'title': RandomTextGenerator("./txt", "./combinations/title").generate_sentence(),
+        'title': RandomTextGenerator("book\\scripts\\txt", "book\\scripts\\combinations\\title").generate_sentence(),
         'author': model_class_instance.name,
         'chapters': []
     }

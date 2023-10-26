@@ -1,5 +1,6 @@
 import os
 import random
+from django.conf import settings
 
 
 def map_files(path):
@@ -21,6 +22,8 @@ def load_combinations(path):
 class RandomTextGenerator:
 
     def __init__(self,text_path,combinations_path):
+        text_path = os.path.join(settings.BASE_DIR, text_path)
+        combinations_path = os.path.join(settings.BASE_DIR, combinations_path)
         self.text_dict = map_files(text_path)
         self.combinations = load_combinations(combinations_path)
 

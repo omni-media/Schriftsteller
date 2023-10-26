@@ -7,6 +7,11 @@ def create_user():
     user.save()
     return user
 
+def create_superuser():
+    user = User.objects.create_superuser("login", "login@email.com", "password")
+    user.save()
+    return user
+
 
 def get_tokens(client, user):
     url = reverse('token_obtain_pair')
@@ -14,8 +19,11 @@ def get_tokens(client, user):
     return response.data
 
 
-def setup_jwt_auth(client):
-    user = create_user()
+def setup_jwt_auth(client,superuser=False):
+    if superuser:
+        user = create_superuser()
+    else:
+         user = create_user()
     tokens = get_tokens(client, user)
     client.credentials(HTTP_AUTHORIZATION='Bearer ' + tokens['access'])
     return user
