@@ -1357,7 +1357,7 @@ export const books = [
     },
     {
         "id": 92,
-        "title": "Lorem",
+        "title": "Zoooo",
         "author": "est sint",
         "description": "consectetur non amet",
         "genre": "amet",

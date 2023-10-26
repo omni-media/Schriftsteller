@@ -54,16 +54,14 @@ export class Search {
 			})
 			case 'A-Z':
 				return search_result.sort((a, b) => {
-					if(a.title < b.title) {return -1}
-					else if(a.title > b.title) {return 1}
-					return 0
+					const collator = new Intl.Collator('en', {numeric: true, sensitivity: 'base'})
+					return collator.compare(a.title, b.title)
 			})
 			case 'Z-A':
 				return search_result.sort((a, b) => {
-					if(a.title < b.title) {return -1}
-					else if(a.title > b.title) {return 1}
-					return 0
-			}).reverse()
+					const collator = new Intl.Collator('en', {numeric: true, sensitivity: 'base'})
+					return collator.compare(b.title, a.title)
+			})
 		}
 	}
 }
