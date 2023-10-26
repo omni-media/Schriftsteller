@@ -3,38 +3,39 @@ import {Book} from "@/app/types"
 
 export class Search {
 	#manifest: Book[]
-
 	#fuzzy: Fuse<Book>
-	#search_result: Book[]
 
 	constructor(manifest: Book[]) {
 		this.#manifest = manifest
-		this.#search_result = manifest
 		this.#fuzzy = new Fuse(manifest, {keys: ["title"]})
 	}
 
 	query({text, sort}: {text: string, sort: SortBy}) {
-		if(text.split(" ").length >= 10) {return []}
-		if(text === "") {this.#search_result = this.#manifest}
-		else {this.#search_result = this.#fuzzy.search(text).map(fs => fs.item)}
-		return this.#sort(sort)
+		const search_result = this.#search(text)
+		return this.#sort(search_result, sort)
 	}
 
-	#sort(sort: SortBy) {
+	#search(text: string) {
+		if(text.split(" ").length >= 10) {return []}
+		if(text === "") {return this.#manifest}
+		else {return this.#fuzzy.search(text).map(fs => fs.item)}
+	}
+
+	#sort(search_result: Book[], sort: SortBy) {
 		switch(sort) {
 			case "newest":
-				return this.#search_result.sort((a, b) => {
+				return search_result.sort((a, b) => {
 					if(new Date(a.publish_date).getTime() > new Date(b.publish_date).getTime()) {
 						return -1
 					} else return 1
 				})
 			case "oldest":
-				return this.#search_result.sort((a, b) => {
+				return search_result.sort((a, b) => {
 					if(new Date(a.publish_date).getTime() > new Date(b.publish_date).getTime()) {return 1}
 						else return -1
 				})
 			case "longest":
-				return this.#search_result.sort((a, b) => {
+				return search_result.sort((a, b) => {
 					let book_a_length = 0
 					let book_b_length = 0
 					a.chapters.forEach(c => book_a_length += c.content.length)
@@ -43,7 +44,7 @@ export class Search {
 						else return 1
 			})
 			case 'shortest':
-				return this.#search_result.sort((a, b) => {
+				return search_result.sort((a, b) => {
 					let book_a_length = 0
 					let book_b_length = 0
 					a.chapters.forEach(c => book_a_length += c.content.length)
@@ -52,13 +53,13 @@ export class Search {
 						else return -1
 			})
 			case 'A-Z':
-				return this.#search_result.sort((a, b) => {
+				return search_result.sort((a, b) => {
 					if(a.title < b.title) {return -1}
 					else if(a.title > b.title) {return 1}
 					return 0
 			})
 			case 'Z-A':
-				return this.#search_result.sort((a, b) => {
+				return search_result.sort((a, b) => {
 					if(a.title < b.title) {return -1}
 					else if(a.title > b.title) {return 1}
 					return 0
