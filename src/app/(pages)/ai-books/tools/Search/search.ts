@@ -7,7 +7,7 @@ export class Search {
 
 	constructor(manifest: Book[]) {
 		this.#manifest = manifest
-		this.#fuzzy = new Fuse(manifest, {keys: ["title"]})
+		this.#fuzzy = new Fuse(manifest, {keys: ["title"], threshold: 0.2})
 	}
 
 	query({text, sort}: {text: string, sort: SortBy}) {
