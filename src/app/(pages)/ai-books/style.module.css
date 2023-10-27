@@ -2,6 +2,8 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	border: 1px solid #0000007a;
+	border-radius: 10px;
 }
 
 .book {
@@ -12,6 +14,37 @@
 	align-items: center;
 	margin-bottom: 1em;
 	position: relative;
+}
+
+.searchBar {
+	width: 100%;
+	height: 40px;
+	background: #1D4449;
+	border-radius: 10px;
+	margin-bottom: 2em;
+	display: flex;
+	align-items: center;
+}
+
+.searchIcon {
+	padding: 0 0.5em;
+	filter: invert(0.8);
+}
+
+.searchInput {
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-radius: 10px;
+	background: none;
+	padding: 0;
+	padding-left: 0.5em;
+	color: white;
+}
+
+.searchInput:focus {
+	outline: none;
+	box-shadow: inset 0em 0em 1em #2f6e76;
 }
 
 .mainHeading {
