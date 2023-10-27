@@ -12,7 +12,7 @@ export default function Navigation() {
 			<nav className={styles.navigation}>
 				<ol>
 					<li>
-						<Link className={location === "/ai-books" ? styles.active : ""} href="/ai-books">
+						<Link className={location === "/ai-books" || location === "/" ? styles.active : ""} href="/ai-books">
 							AI-books
 						</Link>
 					</li>
