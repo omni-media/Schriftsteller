@@ -1,15 +1,14 @@
 /** @type {import('next').NextConfig} */
-const isGithubActions = process.env.GITHUB_ACTIONS || false
-let basePath = ''
-if(isGithubActions) {
-	basePath = "/Schriftsteller"
-}
+const basePath = process.env.NODE_ENV === "development" ? "" : "/Schriftsteller"
 const nextConfig = {
 	output: 'export',
 	distDir: 'dist',
 	basePath,
+	env: {
+		basePath
+	},
 	images: {
-		unoptimized: true
+		unoptimized: true,
 	}
 }
 

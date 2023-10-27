@@ -26,7 +26,7 @@ export default async function BookPage({
 								<Link className={styles.link} href={`${book.title.split(" ").join("-")}/${chapter.heading.split(" ").join("-")}`}>
 									<span>{chapter.heading}</span>
 								</Link>
-								<Image className={styles.bgImage} alt="book cover" width={400} height={450} src="/book-cover.png" />
+								<Image className={styles.bgImage} alt="book cover" width={400} height={450} src={`${process.env.basePath}/book-cover.png`} />
 							</div>
 						</div>
 						)}

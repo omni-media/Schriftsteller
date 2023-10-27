@@ -32,13 +32,13 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
-
+    
     - name: 📦 install dependencies
       run: npm ci
 
     - name: 🔨 build
       run: npm run build
-    
+
     - name: 🚚 tracking ignored stuff
       run: |
         sed -i.bak -e '/^\/node_modules$/d' .gitignore

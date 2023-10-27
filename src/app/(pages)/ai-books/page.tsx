@@ -47,7 +47,7 @@ export default function AIBooks() {
 					<div className={styles.book} key={i}>
 						<h2 className={styles.title}>{book.title}</h2>
 						<div className={styles.bookCover}>
-							<Image className={styles.bookCoverImg} alt="book cover" width={200} height={250} src="/book-cover.png"/>
+							<Image className={styles.bookCoverImg} alt="book cover" width={200} height={250} src={`${process.env.basePath}/book-cover.png`}/>
 							<Link className={styles.read} href={`ai-books/${book.title.split(" ").join("-")}`}>
 								Read
 							</Link>

@@ -8,7 +8,7 @@ export default function Navigation() {
 	const location = usePathname()
 	return (
 		<>
-			<Image className={styles.logo} alt="logo" width={900} height={150} src="/schriftsteller-logo.png" />
+			<Image className={styles.logo} alt="logo" width={900} height={150} src={`${process.env.basePath}/schriftsteller-logo.png`} />
 			<nav className={styles.navigation}>
 				<ol>
 					<li>
