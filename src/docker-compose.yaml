@@ -1,0 +1,30 @@
+version: "3"
+services: 
+    django: 
+        container_name: django_backend
+        build: ./backend
+        command: python ./manage.py runserver 0.0.0.0:8000
+        volumes: 
+            - ./backend:/code
+        ports: 
+          - "8000:8000"
+        links:
+          - redis
+    redis:
+        image: redis:7
+        ports:
+          - "6379:6379"
+    # Celery Service
+    celery:
+        build: ./backend
+        command: celery -A backend worker -l INFO
+        volumes:
+            - .:/usr/src/app
+        environment:
+            - DEBUG=1
+            - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+            - CELERY_BROKER=redis://redis:6379/0
+            - CELERY_BACKEND=redis://redis:6379/0
+        depends_on:
+            - django
+            - redis

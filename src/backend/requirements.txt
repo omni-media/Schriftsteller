@@ -1,6 +1,8 @@
-diffusers==0.21.4
-Django==4.2.6
-djangorestframework==3.14.0
-djangorestframework_simplejwt==5.3.0
-torch==2.1.0
-transformers==4.34.1
+diffusers
+Django==4.1
+djangorestframework
+djangorestframework_simplejwt
+torch==2.1
+transformers
+celery
+
