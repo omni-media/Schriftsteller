@@ -142,7 +142,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Celery settings
-CELERY_BROKER_URL = "redis://localhost:6379/0"
-CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+CELERY_BROKER_URL = "redis://redis:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379/1"
 
+CELERY_BEAT_SCHEDULE = {
+      'add-every-30-seconds': {
+        'task': 'book.tasks.generate_daily_books',
+        'schedule': 360,
+        'args': (16, 16),
+        'options': {
+            'expires': 700,
+        },
+    },
+}
 

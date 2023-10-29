@@ -10,7 +10,7 @@ from django.core.files.base import ContentFile
 
 
 @shared_task()
-def generate_daily_books():
+def generate_daily_books(*args,**kwargs):
     book = make_book()
     book_id = book['title'] + str(time.time()).split(".")[0]
     book_id = book_id.replace(" ", "_")

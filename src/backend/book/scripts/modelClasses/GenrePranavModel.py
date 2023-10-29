@@ -1,6 +1,6 @@
 from transformers import pipeline
 from .BaseModel import BaseModel
-
+from book.scripts.util import get_cache_dir_path
 
 class GenrePranavModel(BaseModel):
     name = "pranavpsv/gpt2-genre-story-generator"
@@ -9,7 +9,7 @@ class GenrePranavModel(BaseModel):
         self.story_gen = None
 
     def prepare(self):
-        self.story_gen = pipeline("text-generation", "pranavpsv/gpt2-genre-story-generator")
+        self.story_gen = pipeline("text-generation", "pranavpsv/gpt2-genre-story-generator",cache_dir=get_cache_dir_path())
 
     def generate(self, start_text="", length=1024, *args, **kwargs):
         text_args = "<BOS> <drama> "

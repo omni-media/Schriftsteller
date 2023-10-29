@@ -11,6 +11,6 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()
 
 
-@app.on_after_configure.connect
-def setup_periodic_tasks(sender, **kwargs):
-    sender.add_periodic_task(360, generate_daily_books, name='add every 360 seconds',expires=600)
+# @pp.on_after_finalize.connect
+# def setup_periodic_tasks(sender, **kwargs):
+#     sender.add_periodic_atask(360, generate_daily_books, name='add every 360 seconds',expires=600)

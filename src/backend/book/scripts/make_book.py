@@ -8,6 +8,7 @@ from book.scripts.modelClasses.GenrePranavModel import GenrePranavModel
 from book.scripts.modelClasses.FairseqNerysModel import FairseqNerysModel
 from book.scripts.RandomTextGenerator import RandomTextGenerator
 from book.scripts.modelClasses.OpenJourneyImageModel import OpenJourneyImageModel
+from book.scripts.util import get_cache_dir_path
 
 
 def generate_summary(text):
@@ -16,6 +17,7 @@ def generate_summary(text):
         "summarization",
         hf_name,
         device=0 if torch.cuda.is_available() else -1,
+        cache_dir = get_cache_dir_path()
 
     )
     result = summarizer(
