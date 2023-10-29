@@ -42,7 +42,7 @@ def generate_dict_chapter(heading, content):
 def generate_book(model_class_instance, chapters=4, **kwargs):
     model_class_instance.prepare()
     book_dict = {
-        'title': RandomTextGenerator("book\\scripts\\txt", "book\\scripts\\combinations\\title").generate_sentence(),
+        'title': RandomTextGenerator("book/scripts/txt", "book/scripts/combinations/title").generate_sentence(),
         'author': model_class_instance.name,
         'chapters': []
     }
@@ -51,7 +51,7 @@ def generate_book(model_class_instance, chapters=4, **kwargs):
         start_text = chapter_heading
         if i > 0:
             last_chapter = book_dict['chapters'][i - 1]['content']
-            last_chars = int(len(last_chapter) / 3)
+            last_chars = int(len(last_chapter) / 4)
             start_text = last_chapter[-last_chars:]
         book_dict['chapters'].append(
             generate_dict_chapter(
@@ -74,7 +74,7 @@ def make_book(**kwargs):
     if 'model' in kwargs:
         model = models[kwargs.get('model')]
     chapters = random.randint(2, 7)
-    json_book = json.dumps(generate_book(model, chapters=chapters, **kwargs), indent=2)
-    return json_book
+    return generate_book(model, chapters=chapters, **kwargs)
+
 
 

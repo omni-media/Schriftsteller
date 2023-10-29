@@ -13,5 +13,5 @@ class GenrePranavModel(BaseModel):
 
     def generate(self, start_text="", length=1024, *args, **kwargs):
         text_args = "<BOS> <drama> "
-        text = self.story_gen(text_args + start_text, max_length=1024,min_length=512)[0]["generated_text"]
+        text = self.story_gen(text_args + start_text, max_length=1024,min_length=720)[0]["generated_text"]
         return self.remove_n_chars(text,len(start_text)+len(text_args))
