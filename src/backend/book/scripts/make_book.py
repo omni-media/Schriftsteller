@@ -1,10 +1,13 @@
 # Example of usage
+import random
+
 from transformers import pipeline
 import json
 import torch
 from book.scripts.modelClasses.GenrePranavModel import GenrePranavModel
 from book.scripts.modelClasses.FairseqNerysModel import FairseqNerysModel
 from book.scripts.RandomTextGenerator import RandomTextGenerator
+from book.scripts.modelClasses.OpenJourneyImageModel import OpenJourneyImageModel
 
 
 def generate_summary(text):
@@ -36,7 +39,7 @@ def generate_dict_chapter(heading, content):
     }
 
 
-def generate_book(model_class_instance, chapters=4,**kwargs):
+def generate_book(model_class_instance, chapters=4, **kwargs):
     model_class_instance.prepare()
     book_dict = {
         'title': RandomTextGenerator("book\\scripts\\txt", "book\\scripts\\combinations\\title").generate_sentence(),
@@ -70,10 +73,8 @@ def make_book(**kwargs):
     model = models['pranav']
     if 'model' in kwargs:
         model = models[kwargs.get('model')]
-    json_book = json.dumps(generate_book(model, chapters=2, **kwargs), indent=2)
+    chapters = random.randint(2, 7)
+    json_book = json.dumps(generate_book(model, chapters=chapters, **kwargs), indent=2)
     return json_book
-
-    # with open("sample_book.json", "w") as outfile:
-    #     outfile.write(json_book)
 
 

@@ -11,7 +11,7 @@ services:
         links:
           - redis
         healthcheck:
-            test: [ "CMD", "curl", "-f", "http://localhost:8000/" ]
+            test: [ "CMD", "curl", "-f", "http://localhost:8000/healthcheck/" ]
             interval: 30s
             timeout: 10s
             retries: 5
@@ -23,6 +23,22 @@ services:
     celery:
         build: ./backend
         command: celery -A backend worker -l INFO
+        volumes:
+            - ./backend:/code
+        environment:
+            - DEBUG=1
+            - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+            - CELERY_BROKER=redis://redis:6379/0
+            - CELERY_BACKEND=redis://redis:6379/0
+        depends_on:
+            django:
+                condition: service_healthy
+            redis:
+                condition: service_started
+
+    celery_beat:
+        build: ./backend
+        command: celery -A backend beat
         volumes:
             - ./backend:/code
         environment:
