@@ -4,5 +4,5 @@ djangorestframework
 djangorestframework_simplejwt
 torch==2.1
 transformers
-celery
+celery[redis]
 
