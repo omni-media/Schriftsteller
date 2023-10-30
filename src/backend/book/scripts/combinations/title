@@ -1,2 +1,6 @@
-@type1 @type2 @type3
-@type3  did @type1 @type3
+@subject @type3 @verb_2_form
+@adjectives @subject
+@adjectives @subject @verb_2_form
+@verb_1_form
+@adjectives @subject @verb_2_form @adjectives @subject
+

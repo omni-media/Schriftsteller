@@ -9,7 +9,7 @@ class GenrePranavModel(BaseModel):
         self.story_gen = None
 
     def prepare(self):
-        self.story_gen = pipeline("text-generation", "pranavpsv/gpt2-genre-story-generator",cache_dir=get_cache_dir_path())
+        self.story_gen = pipeline("text-generation", "pranavpsv/gpt2-genre-story-generator")
 
     def generate(self, start_text="", length=1024, *args, **kwargs):
         text_args = "<BOS> <drama> "

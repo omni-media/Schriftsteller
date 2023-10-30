@@ -17,8 +17,6 @@ def generate_summary(text):
         "summarization",
         hf_name,
         device=0 if torch.cuda.is_available() else -1,
-        cache_dir = get_cache_dir_path()
-
     )
     result = summarizer(
         text,
