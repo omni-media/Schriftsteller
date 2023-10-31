@@ -146,12 +146,12 @@ CELERY_BROKER_URL = "redis://redis:6379/0"
 CELERY_RESULT_BACKEND = "redis://redis:6379/1"
 
 CELERY_BEAT_SCHEDULE = {
-      'add-every-30-seconds': {
+      'add-every-24-hours': {
         'task': 'book.tasks.generate_daily_books',
-        'schedule': 360,
+        'schedule': 86400,
         'args': (16, 16),
         'options': {
-            'expires': 700,
+            'expires': 86400,
         },
     },
 }
