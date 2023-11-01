@@ -6,6 +6,9 @@ from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from book.models import Book
+from book.serializers import BookSerializer
+from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import status
 
@@ -22,3 +25,10 @@ class GetGenerateBook(APIView):
             print(e)
             return Response(status=status.HTTP_400_BAD_REQUEST)
         return Response(data=book, status=status.HTTP_200_OK)
+    
+
+class BookList(ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    
+    
