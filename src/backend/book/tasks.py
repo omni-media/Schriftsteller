@@ -10,6 +10,7 @@ import time
 from django.core.files.base import ContentFile
 from django.core.files.images import ImageFile
 import io
+from book.scripts.util import save_unaccounted_books
 
 
 def generate_book(*args, **kwargs):
@@ -41,3 +42,8 @@ def generate_images_for_book(book_obj):
 def generate_daily_books(*args, **kwargs):
     for i in range(3):
         generate_book()
+
+
+@shared_task()
+def save_books_not_in_db(*args, **kwargs):
+    save_unaccounted_books()
