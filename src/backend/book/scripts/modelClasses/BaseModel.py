@@ -3,6 +3,8 @@ from abc import ABC, abstractmethod
 
 class BaseModel(ABC):
 
+    def __init__(self):
+        self.genre = ""
     @abstractmethod
     def prepare(self, *args, **kwargs):
         pass

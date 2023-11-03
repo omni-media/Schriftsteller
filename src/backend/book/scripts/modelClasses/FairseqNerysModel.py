@@ -8,6 +8,7 @@ class FairseqNerysModel(BaseModel):
 
     def __init__(self):
         self.generator = None
+        self.genre = ""
 
     def prepare(self):
         self.generator = pipeline("text-generation", "KoboldAI/fairseq-dense-13B-Nerys")

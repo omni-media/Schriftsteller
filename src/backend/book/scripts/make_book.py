@@ -9,6 +9,7 @@ from book.scripts.modelClasses.FairseqNerysModel import FairseqNerysModel
 from book.scripts.RandomTextGenerator import RandomTextGenerator
 from book.scripts.modelClasses.OpenJourneyImageModel import OpenJourneyImageModel
 from book.scripts.util import get_cache_dir_path
+import datetime
 
 
 def generate_summary(text):
@@ -41,10 +42,14 @@ def generate_dict_chapter(heading, content):
 
 def generate_book(model_class_instance, chapters=4, **kwargs):
     model_class_instance.prepare()
+    x = datetime.datetime.now()
     book_dict = {
         'title': RandomTextGenerator("book/scripts/txt", "book/scripts/combinations/title").generate_sentence(),
         'author': model_class_instance.name,
+        'genre': model_class_instance.genre,
+        'publish_date': str(x.year) + "-" + str(x.month) + "-" + str(x.day),
         'chapters': []
+
     }
     for i in range(chapters):
         chapter_heading = book_dict['title'] + " chapter " + str(i + 1)
@@ -75,6 +80,3 @@ def make_book(**kwargs):
         model = models[kwargs.get('model')]
     chapters = random.randint(2, 7)
     return generate_book(model, chapters=chapters, **kwargs)
-
-
-

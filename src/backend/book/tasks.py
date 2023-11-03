@@ -18,15 +18,17 @@ def generate_book(*args, **kwargs):
     book_id = book['title'] + str(time.time()).split(".")[0]
     book_id = book_id.replace(" ", "_")
     generate_images_for_book(book)
-    file = ContentFile(json.dumps(book, indent=2))
     book_model = Book.objects.create()
+    book['id'] = book_model.pk
+    file = ContentFile(json.dumps(book, indent=2))
     book_model.bookfile.save(book_id + ".json", file)
     book_model.save()
 
 
 def save_image(image_obj, name):
-    imageFile = ImageFile(io.BytesIO(image_obj.tobytes()), name=name)
-    return "media/" + default_storage.save('images/' + name + ".webp", imageFile)
+    path = default_storage.path('images/' + name + ".webp")
+    image_obj.save(path)
+    return path
 
 
 def generate_images_for_book(book_obj):
