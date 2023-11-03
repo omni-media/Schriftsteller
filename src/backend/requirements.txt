@@ -2,7 +2,7 @@ diffusers
 Django==4.1
 djangorestframework
 djangorestframework_simplejwt
-torch==2.1
+torch==2.0
 transformers
 celery[redis]
 

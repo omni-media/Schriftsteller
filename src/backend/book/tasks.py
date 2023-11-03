@@ -26,9 +26,10 @@ def generate_book(*args, **kwargs):
 
 
 def save_image(image_obj, name):
-    path = default_storage.path('images/' + name + ".webp")
+    url_path = default_storage.get_available_name('images/'+name+'.webp')
+    path = default_storage.path(url_path)
     image_obj.save(path)
-    return path
+    return url_path
 
 
 def generate_images_for_book(book_obj):
